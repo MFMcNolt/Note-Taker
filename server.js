@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -41,16 +42,25 @@ app.get('*', (req, res) => {
 });
 
 function getNotes() {
-  const data = fs.readFileSync(dbFilePath, 'utf8');
-  return JSON.parse(data) || [];
+  try {
+    const data = fs.readFileSync(dbFilePath, 'utf8');
+    return JSON.parse(data) || [];
+  } catch (error) {
+    console.error('Error reading notes:', error);
+    return [];
+  }
 }
 
 function saveNotes(notes) {
-  fs.writeFileSync(dbFilePath, JSON.stringify(notes), 'utf8');
+  try {
+    fs.writeFileSync(dbFilePath, JSON.stringify(notes), 'utf8');
+  } catch (error) {
+    console.error('Error saving notes:', error);
+  }
 }
 
 function generateUniqueId() {
-  return Date.now().toString(); // This is a simple way to generate a unique ID based on the current timestamp
+  return uuidv4();
 }
 
 app.listen(PORT, () => {
