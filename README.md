@@ -4,7 +4,7 @@
 
 Note Taker is a web application designed to streamline the process of taking and managing notes. The motivation behind this project was to create a simple yet effective tool that allows users to quickly jot down important information, access their notes, and delete them when necessary. This project served as an opportunity to apply and enhance my skills in building web applications using Express.js and working with JSON data. It also allowed me to practice my skills with Heroku and understand how to best utilize this application.
 
-Heroku: https://ancient-lake-49633-83258f5507b8.herokuapp.com/notes
+Heroku: https://ancient-lake-49633-83258f5507b8.herokuapp.com/
 GitHub Repo: https://github.com/MFMcNolt/Note-Taker
 GitHub Pages: https://mfmcnolt.github.io/Note-Taker/
 
