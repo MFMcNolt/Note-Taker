@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -31,6 +30,14 @@ app.post('/api/notes', (req, res) => {
   notes.push(newNote);
   saveNotes(notes);
   res.json(newNote);
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+  const noteId = req.params.id;
+  const notes = getNotes();
+  const updatedNotes = notes.filter((note) => note.id !== noteId);
+  saveNotes(updatedNotes);
+  res.json({ message: 'Note deleted successfully' });
 });
 
 function getNotes() {
