@@ -14,10 +14,6 @@ app.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'notes.html'));
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 app.get('/api/notes', (req, res) => {
   const notes = getNotes();
   res.json(notes);
@@ -38,6 +34,10 @@ app.delete('/api/notes/:id', (req, res) => {
   const updatedNotes = notes.filter((note) => note.id !== noteId);
   saveNotes(updatedNotes);
   res.json({ message: 'Note deleted successfully' });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 function getNotes() {
